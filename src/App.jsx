@@ -1,96 +1,140 @@
 export default function App() {
-  const cards = [
-    "Clientes",
-    "Pipeline Ventas",
-    "Presupuestos PDF",
-    "Facturas",
-    "Cobros",
-    "Agenda",
-    "WhatsApp Directo",
-    "Dashboard CEO"
+  const stats = [
+    { title: "Facturado Mes", value: "€48.500" },
+    { title: "Cobrado", value: "€32.900" },
+    { title: "Pendiente", value: "€15.600" },
+    { title: "Margen", value: "28%" }
   ];
 
-  const leads = [
-    ["Construcciones BCN", "Llamar mañana"],
-    ["Reformas Delta", "Enviar presupuesto"],
-    ["Obra Nova", "Visita jueves"]
+  const pipeline = [
+    ["Lead Nuevo", 14],
+    ["Contactado", 9],
+    ["Reunión", 6],
+    ["Presupuesto", 4],
+    ["Cerrado", 3]
+  ];
+
+  const clients = [
+    ["Construcciones BCN", "Activo", "€12.400"],
+    ["Reformas Delta", "Seguimiento", "€7.800"],
+    ["Grupo Nova", "Presupuesto", "€18.000"],
+    ["Obras Urban", "Cobro pendiente", "€10.300"]
   ];
 
   return (
     <div style={{
       fontFamily: "Arial, sans-serif",
-      background: "#f4f6f8",
+      background: "#eef2f7",
       minHeight: "100vh",
-      padding: "20px"
+      padding: "24px"
     }}>
-      <h1 style={{marginBottom:"5px"}}>CRM PRO DM CONSULTING</h1>
-      <p style={{color:"#666", marginBottom:"25px"}}>
-        Gestión comercial profesional online
+      <h1 style={{marginBottom:"5px", fontSize:"34px"}}>
+        CRM EMPRESA TOP DM CONSULTING
+      </h1>
+      <p style={{color:"#555", marginBottom:"25px"}}>
+        Dirección comercial · Control financiero · Gestión real
       </p>
 
+      {/* KPIS */}
       <div style={{
         display:"grid",
-        gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",
-        gap:"15px",
-        marginBottom:"30px"
+        gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
+        gap:"16px",
+        marginBottom:"28px"
       }}>
-        {cards.map((item) => (
-          <div key={item} style={{
+        {stats.map((item) => (
+          <div key={item.title} style={{
             background:"#fff",
-            padding:"18px",
-            borderRadius:"14px",
-            boxShadow:"0 2px 8px rgba(0,0,0,.08)",
-            fontWeight:"600"
+            borderRadius:"16px",
+            padding:"20px",
+            boxShadow:"0 3px 10px rgba(0,0,0,.08)"
           }}>
-            {item}
+            <div style={{color:"#666", fontSize:"14px"}}>{item.title}</div>
+            <div style={{fontSize:"28px", fontWeight:"700", marginTop:"8px"}}>
+              {item.value}
+            </div>
           </div>
         ))}
       </div>
 
+      {/* GRID CENTRAL */}
       <div style={{
         display:"grid",
-        gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",
-        gap:"15px"
+        gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))",
+        gap:"18px"
       }}>
+
+        {/* Pipeline */}
         <div style={{
           background:"#fff",
-          padding:"18px",
-          borderRadius:"14px",
-          boxShadow:"0 2px 8px rgba(0,0,0,.08)"
+          borderRadius:"16px",
+          padding:"20px",
+          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
         }}>
-          <h3>Leads Activos</h3>
-          {leads.map((lead) => (
-            <div key={lead[0]} style={{marginTop:"12px"}}>
-              <strong>{lead[0]}</strong><br />
-              <span style={{color:"#666"}}>{lead[1]}</span>
+          <h3>Pipeline Comercial</h3>
+          {pipeline.map((p) => (
+            <div key={p[0]} style={{
+              display:"flex",
+              justifyContent:"space-between",
+              padding:"10px 0",
+              borderBottom:"1px solid #eee"
+            }}>
+              <span>{p[0]}</span>
+              <strong>{p[1]}</strong>
             </div>
           ))}
         </div>
 
+        {/* Clientes */}
         <div style={{
           background:"#fff",
-          padding:"18px",
-          borderRadius:"14px",
-          boxShadow:"0 2px 8px rgba(0,0,0,.08)"
+          borderRadius:"16px",
+          padding:"20px",
+          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
         }}>
-          <h3>KPIs Mes</h3>
-          <p>Presupuestos: 12</p>
-          <p>Cierres: 3</p>
-          <p>Facturado: €18.500</p>
-          <p>Cobrado: €12.200</p>
+          <h3>Clientes Estratégicos</h3>
+          {clients.map((c) => (
+            <div key={c[0]} style={{
+              padding:"12px 0",
+              borderBottom:"1px solid #eee"
+            }}>
+              <strong>{c[0]}</strong><br />
+              <span style={{color:"#666"}}>{c[1]}</span><br />
+              <span>{c[2]}</span>
+            </div>
+          ))}
         </div>
 
+        {/* Agenda */}
         <div style={{
           background:"#fff",
-          padding:"18px",
-          borderRadius:"14px",
-          boxShadow:"0 2px 8px rgba(0,0,0,.08)"
+          borderRadius:"16px",
+          padding:"20px",
+          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
         }}>
-          <h3>Agenda Hoy</h3>
-          <p>09:30 Cliente Nou Barris</p>
-          <p>12:00 Seguimiento llamadas</p>
-          <p>17:00 Revisar cobros</p>
+          <h3>Agenda CEO</h3>
+          <p>09:00 Seguimiento leads premium</p>
+          <p>11:30 Reunión cliente Barcelona</p>
+          <p>13:00 Envío presupuestos</p>
+          <p>17:00 Control cobros</p>
+          <p>18:30 Revisión KPI semanal</p>
         </div>
+
+        {/* Acciones */}
+        <div style={{
+          background:"#fff",
+          borderRadius:"16px",
+          padding:"20px",
+          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
+        }}>
+          <h3>Acciones Rápidas</h3>
+          <p>➕ Nuevo Cliente</p>
+          <p>📄 Crear Presupuesto</p>
+          <p>🧾 Emitir Factura</p>
+          <p>💬 WhatsApp Directo</p>
+          <p>💶 Marcar Cobrado</p>
+        </div>
+
       </div>
     </div>
   );
