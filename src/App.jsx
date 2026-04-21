@@ -1,4 +1,68 @@
 export default function App() {
+  const isLogged = true; // cambiar luego por auth real
+
+  if (!isLogged) {
+    return (
+      <div style={{
+        minHeight:"100vh",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        background:"#eef2f7",
+        fontFamily:"Arial"
+      }}>
+        <div style={{
+          background:"#fff",
+          padding:"35px",
+          borderRadius:"18px",
+          width:"360px",
+          boxShadow:"0 6px 18px rgba(0,0,0,.08)"
+        }}>
+          <h1 style={{marginBottom:"8px"}}>DM CONSULTING CRM</h1>
+          <p style={{color:"#666", marginBottom:"25px"}}>
+            Acceso privado empresa
+          </p>
+
+          <input
+            placeholder="Email"
+            style={{
+              width:"100%",
+              padding:"12px",
+              marginBottom:"12px",
+              borderRadius:"10px",
+              border:"1px solid #ddd"
+            }}
+          />
+
+          <input
+            type="password"
+            placeholder="Contraseña"
+            style={{
+              width:"100%",
+              padding:"12px",
+              marginBottom:"18px",
+              borderRadius:"10px",
+              border:"1px solid #ddd"
+            }}
+          />
+
+          <button style={{
+            width:"100%",
+            padding:"12px",
+            border:"none",
+            borderRadius:"10px",
+            background:"#111",
+            color:"#fff",
+            fontWeight:"700",
+            cursor:"pointer"
+          }}>
+            Entrar
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const stats = [
     { title: "Facturado Mes", value: "€48.500" },
     { title: "Cobrado", value: "€32.900" },
@@ -6,135 +70,59 @@ export default function App() {
     { title: "Margen", value: "28%" }
   ];
 
-  const pipeline = [
-    ["Lead Nuevo", 14],
-    ["Contactado", 9],
-    ["Reunión", 6],
-    ["Presupuesto", 4],
-    ["Cerrado", 3]
-  ];
-
-  const clients = [
-    ["Construcciones BCN", "Activo", "€12.400"],
-    ["Reformas Delta", "Seguimiento", "€7.800"],
-    ["Grupo Nova", "Presupuesto", "€18.000"],
-    ["Obras Urban", "Cobro pendiente", "€10.300"]
-  ];
-
   return (
     <div style={{
-      fontFamily: "Arial, sans-serif",
-      background: "#eef2f7",
-      minHeight: "100vh",
-      padding: "24px"
+      fontFamily:"Arial",
+      background:"#eef2f7",
+      minHeight:"100vh",
+      padding:"24px"
     }}>
-      <h1 style={{marginBottom:"5px", fontSize:"34px"}}>
-        CRM EMPRESA TOP DM CONSULTING
-      </h1>
-      <p style={{color:"#555", marginBottom:"25px"}}>
-        Dirección comercial · Control financiero · Gestión real
-      </p>
+      <div style={{
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center",
+        marginBottom:"25px"
+      }}>
+        <div>
+          <h1 style={{margin:"0"}}>CRM EMPRESA TOP</h1>
+          <p style={{margin:"4px 0", color:"#666"}}>
+            Usuario: admin@dmconsulting.es
+          </p>
+        </div>
 
-      {/* KPIS */}
+        <button style={{
+          padding:"10px 14px",
+          border:"none",
+          borderRadius:"10px",
+          background:"#fff",
+          cursor:"pointer"
+        }}>
+          Cerrar sesión
+        </button>
+      </div>
+
       <div style={{
         display:"grid",
         gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-        gap:"16px",
-        marginBottom:"28px"
+        gap:"15px"
       }}>
-        {stats.map((item) => (
+        {stats.map((item)=>(
           <div key={item.title} style={{
             background:"#fff",
+            padding:"18px",
             borderRadius:"16px",
-            padding:"20px",
             boxShadow:"0 3px 10px rgba(0,0,0,.08)"
           }}>
-            <div style={{color:"#666", fontSize:"14px"}}>{item.title}</div>
-            <div style={{fontSize:"28px", fontWeight:"700", marginTop:"8px"}}>
+            <div style={{color:"#666"}}>{item.title}</div>
+            <div style={{
+              fontSize:"28px",
+              fontWeight:"700",
+              marginTop:"8px"
+            }}>
               {item.value}
             </div>
           </div>
         ))}
-      </div>
-
-      {/* GRID CENTRAL */}
-      <div style={{
-        display:"grid",
-        gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))",
-        gap:"18px"
-      }}>
-
-        {/* Pipeline */}
-        <div style={{
-          background:"#fff",
-          borderRadius:"16px",
-          padding:"20px",
-          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-        }}>
-          <h3>Pipeline Comercial</h3>
-          {pipeline.map((p) => (
-            <div key={p[0]} style={{
-              display:"flex",
-              justifyContent:"space-between",
-              padding:"10px 0",
-              borderBottom:"1px solid #eee"
-            }}>
-              <span>{p[0]}</span>
-              <strong>{p[1]}</strong>
-            </div>
-          ))}
-        </div>
-
-        {/* Clientes */}
-        <div style={{
-          background:"#fff",
-          borderRadius:"16px",
-          padding:"20px",
-          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-        }}>
-          <h3>Clientes Estratégicos</h3>
-          {clients.map((c) => (
-            <div key={c[0]} style={{
-              padding:"12px 0",
-              borderBottom:"1px solid #eee"
-            }}>
-              <strong>{c[0]}</strong><br />
-              <span style={{color:"#666"}}>{c[1]}</span><br />
-              <span>{c[2]}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Agenda */}
-        <div style={{
-          background:"#fff",
-          borderRadius:"16px",
-          padding:"20px",
-          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-        }}>
-          <h3>Agenda CEO</h3>
-          <p>09:00 Seguimiento leads premium</p>
-          <p>11:30 Reunión cliente Barcelona</p>
-          <p>13:00 Envío presupuestos</p>
-          <p>17:00 Control cobros</p>
-          <p>18:30 Revisión KPI semanal</p>
-        </div>
-
-        {/* Acciones */}
-        <div style={{
-          background:"#fff",
-          borderRadius:"16px",
-          padding:"20px",
-          boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-        }}>
-          <h3>Acciones Rápidas</h3>
-          <p>➕ Nuevo Cliente</p>
-          <p>📄 Crear Presupuesto</p>
-          <p>🧾 Emitir Factura</p>
-          <p>💬 WhatsApp Directo</p>
-          <p>💶 Marcar Cobrado</p>
-        </div>
-
       </div>
     </div>
   );
