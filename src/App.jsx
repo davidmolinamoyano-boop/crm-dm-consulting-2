@@ -1,129 +1,88 @@
 export default function App() {
-  const isLogged = true; // cambiar luego por auth real
+  const isLogged = true;
 
-  if (!isLogged) {
-    return (
-      <div style={{
-        minHeight:"100vh",
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center",
-        background:"#eef2f7",
-        fontFamily:"Arial"
-      }}>
-        <div style={{
-          background:"#fff",
-          padding:"35px",
-          borderRadius:"18px",
-          width:"360px",
-          boxShadow:"0 6px 18px rgba(0,0,0,.08)"
-        }}>
-          <h1 style={{marginBottom:"8px"}}>DM CONSULTING CRM</h1>
-          <p style={{color:"#666", marginBottom:"25px"}}>
-            Acceso privado empresa
-          </p>
-
-          <input
-            placeholder="Email"
-            style={{
-              width:"100%",
-              padding:"12px",
-              marginBottom:"12px",
-              borderRadius:"10px",
-              border:"1px solid #ddd"
-            }}
-          />
-
-          <input
-            type="password"
-            placeholder="Contraseña"
-            style={{
-              width:"100%",
-              padding:"12px",
-              marginBottom:"18px",
-              borderRadius:"10px",
-              border:"1px solid #ddd"
-            }}
-          />
-
-          <button style={{
-            width:"100%",
-            padding:"12px",
-            border:"none",
-            borderRadius:"10px",
-            background:"#111",
-            color:"#fff",
-            fontWeight:"700",
-            cursor:"pointer"
-          }}>
-            Entrar
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const stats = [
-    { title: "Facturado Mes", value: "€48.500" },
-    { title: "Cobrado", value: "€32.900" },
-    { title: "Pendiente", value: "€15.600" },
-    { title: "Margen", value: "28%" }
+  const menu = [
+    "Clientes",
+    "Pipeline",
+    "Presupuestos",
+    "Facturas",
+    "Cobros",
+    "Agenda",
+    "WhatsApp",
+    "Dashboard"
   ];
 
+  const clients = [
+    ["Construcciones BCN", "Activo"],
+    ["Reformas Delta", "Seguimiento"],
+    ["Grupo Nova", "Presupuesto"]
+  ];
+
+  const stats = [
+    ["Facturado", "€48.500"],
+    ["Cobrado", "€32.900"],
+    ["Pendiente", "€15.600"],
+    ["Margen", "28%"]
+  ];
+
+  if (!isLogged) return <div>Login...</div>;
+
   return (
-    <div style={{
-      fontFamily:"Arial",
-      background:"#eef2f7",
-      minHeight:"100vh",
-      padding:"24px"
-    }}>
-      <div style={{
-        display:"flex",
-        justifyContent:"space-between",
-        alignItems:"center",
-        marginBottom:"25px"
-      }}>
-        <div>
-          <h1 style={{margin:"0"}}>CRM EMPRESA TOP</h1>
-          <p style={{margin:"4px 0", color:"#666"}}>
-            Usuario: admin@dmconsulting.es
-          </p>
-        </div>
+    <div style={{fontFamily:"Arial",padding:"20px",background:"#eef2f7",minHeight:"100vh"}}>
 
-        <button style={{
-          padding:"10px 14px",
-          border:"none",
-          borderRadius:"10px",
-          background:"#fff",
-          cursor:"pointer"
-        }}>
-          Cerrar sesión
-        </button>
-      </div>
+      <h1>CRM EMPRESA TOP</h1>
+      <p>Usuario: admin@dmconsulting.es</p>
 
+      {/* MENU */}
       <div style={{
         display:"grid",
-        gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-        gap:"15px"
+        gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",
+        gap:"12px",
+        marginBottom:"20px"
       }}>
-        {stats.map((item)=>(
-          <div key={item.title} style={{
+        {menu.map(item => (
+          <div key={item} style={{
             background:"#fff",
-            padding:"18px",
-            borderRadius:"16px",
-            boxShadow:"0 3px 10px rgba(0,0,0,.08)"
+            padding:"14px",
+            borderRadius:"12px",
+            fontWeight:"700"
           }}>
-            <div style={{color:"#666"}}>{item.title}</div>
-            <div style={{
-              fontSize:"28px",
-              fontWeight:"700",
-              marginTop:"8px"
-            }}>
-              {item.value}
-            </div>
+            {item}
           </div>
         ))}
       </div>
+
+      {/* KPIS */}
+      <div style={{
+        display:"grid",
+        gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",
+        gap:"12px",
+        marginBottom:"20px"
+      }}>
+        {stats.map(s => (
+          <div key={s[0]} style={{
+            background:"#fff",
+            padding:"16px",
+            borderRadius:"12px"
+          }}>
+            <div>{s[0]}</div>
+            <strong style={{fontSize:"24px"}}>{s[1]}</strong>
+          </div>
+        ))}
+      </div>
+
+      {/* CLIENTES */}
+      <div style={{
+        background:"#fff",
+        padding:"20px",
+        borderRadius:"14px"
+      }}>
+        <h3>Clientes</h3>
+        {clients.map(c => (
+          <p key={c[0]}><strong>{c[0]}</strong> - {c[1]}</p>
+        ))}
+      </div>
+
     </div>
   );
 }
