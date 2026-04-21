@@ -3,33 +3,26 @@ export default function App() {
     "Dashboard",
     "Clientes",
     "Pipeline",
+    "Agenda Pro",
     "Presupuestos",
     "Facturas",
     "Cobros",
-    "Agenda",
     "WhatsApp"
+  ];
+
+  const events = [
+    ["09:00", "Llamada Construcciones BCN"],
+    ["11:30", "Visita cliente Hospitalet"],
+    ["13:00", "Enviar presupuesto Grupo Nova"],
+    ["16:30", "Reunión obra Badalona"],
+    ["18:00", "Revisar cobros pendientes"]
   ];
 
   const stats = [
     ["Facturado", "€48.500"],
     ["Cobrado", "€32.900"],
     ["Pendiente", "€15.600"],
-    ["Margen", "28%"]
-  ];
-
-  const clients = [
-    ["Construcciones BCN", "Activo", "€12.400"],
-    ["Reformas Delta", "Seguimiento", "€7.800"],
-    ["Grupo Nova", "Presupuesto", "€18.000"],
-    ["Obras Urban", "Cobro pendiente", "€10.300"]
-  ];
-
-  const pipeline = [
-    ["Lead Nuevo", 14],
-    ["Contactado", 9],
-    ["Reunión", 6],
-    ["Presupuesto", 4],
-    ["Cerrado", 3]
+    ["Citas Hoy", "5"]
   ];
 
   return (
@@ -47,9 +40,9 @@ export default function App() {
         color:"#fff",
         padding:"22px"
       }}>
-        <h2 style={{marginTop:0}}>DM CRM TOP</h2>
+        <h2 style={{marginTop:0}}>DM CRM PRO</h2>
         <p style={{fontSize:"13px", color:"#aaa"}}>
-          admin@dmconsulting.es
+          Sincronizado con Google Calendar
         </p>
 
         <div style={{marginTop:"25px"}}>
@@ -58,8 +51,7 @@ export default function App() {
               padding:"12px",
               borderRadius:"10px",
               marginBottom:"8px",
-              background:"#1f1f1f",
-              cursor:"pointer"
+              background:"#1f1f1f"
             }}>
               {item}
             </div>
@@ -70,9 +62,9 @@ export default function App() {
       {/* CONTENT */}
       <div style={{flex:1, padding:"24px"}}>
 
-        <h1 style={{marginTop:0}}>CRM EMPRESA TOP V2</h1>
+        <h1 style={{marginTop:0}}>CRM + GOOGLE CALENDAR PRO</h1>
         <p style={{color:"#666", marginBottom:"22px"}}>
-          Gestión empresarial premium
+          Agenda profesional sincronizada
         </p>
 
         {/* KPIS */}
@@ -101,84 +93,55 @@ export default function App() {
           ))}
         </div>
 
-        {/* GRID */}
+        {/* AGENDA */}
+        <div style={{
+          background:"#fff",
+          padding:"22px",
+          borderRadius:"16px",
+          boxShadow:"0 3px 10px rgba(0,0,0,.08)",
+          marginBottom:"20px"
+        }}>
+          <h2>Agenda de Hoy</h2>
+
+          {events.map(ev => (
+            <div key={ev[0]} style={{
+              display:"flex",
+              gap:"18px",
+              padding:"12px 0",
+              borderBottom:"1px solid #eee"
+            }}>
+              <strong style={{minWidth:"70px"}}>{ev[0]}</strong>
+              <span>{ev[1]}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* BOTONES */}
         <div style={{
           display:"grid",
-          gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))",
-          gap:"16px"
+          gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
+          gap:"14px"
         }}>
-
-          {/* CLIENTES */}
-          <div style={{
-            background:"#fff",
-            padding:"18px",
-            borderRadius:"14px",
-            boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-          }}>
-            <h3>Clientes VIP</h3>
-            {clients.map(c => (
-              <div key={c[0]} style={{
-                padding:"12px 0",
-                borderBottom:"1px solid #eee"
-              }}>
-                <strong>{c[0]}</strong><br />
-                <span style={{color:"#666"}}>{c[1]}</span><br />
-                <span>{c[2]}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* PIPELINE */}
-          <div style={{
-            background:"#fff",
-            padding:"18px",
-            borderRadius:"14px",
-            boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-          }}>
-            <h3>Pipeline Comercial</h3>
-            {pipeline.map(p => (
-              <div key={p[0]} style={{
-                display:"flex",
-                justifyContent:"space-between",
-                padding:"10px 0",
-                borderBottom:"1px solid #eee"
-              }}>
-                <span>{p[0]}</span>
-                <strong>{p[1]}</strong>
-              </div>
-            ))}
-          </div>
-
-          {/* AGENDA */}
-          <div style={{
-            background:"#fff",
-            padding:"18px",
-            borderRadius:"14px",
-            boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-          }}>
-            <h3>Agenda Hoy</h3>
-            <p>09:30 Cliente Nou Barris</p>
-            <p>12:00 Seguimiento leads</p>
-            <p>16:00 Visita obra</p>
-            <p>18:00 Revisar cobros</p>
-          </div>
-
-          {/* ACCIONES */}
-          <div style={{
-            background:"#fff",
-            padding:"18px",
-            borderRadius:"14px",
-            boxShadow:"0 3px 10px rgba(0,0,0,.08)"
-          }}>
-            <h3>Acciones Rápidas</h3>
-            <p>➕ Nuevo Cliente</p>
-            <p>📄 Crear Presupuesto</p>
-            <p>🧾 Emitir Factura</p>
-            <p>💬 Abrir WhatsApp</p>
-            <p>💶 Marcar Cobrado</p>
-          </div>
-
+          {[
+            "📅 Abrir Google Calendar",
+            "➕ Nueva Cita",
+            "📍 Ruta de Visitas",
+            "🔔 Recordatorios",
+            "👥 Compartir Agenda",
+            "💬 Avisar por WhatsApp"
+          ].map(btn => (
+            <div key={btn} style={{
+              background:"#fff",
+              padding:"18px",
+              borderRadius:"14px",
+              boxShadow:"0 3px 10px rgba(0,0,0,.08)",
+              fontWeight:"700"
+            }}>
+              {btn}
+            </div>
+          ))}
         </div>
+
       </div>
     </div>
   );
